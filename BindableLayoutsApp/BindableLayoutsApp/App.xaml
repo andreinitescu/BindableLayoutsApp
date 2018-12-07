@@ -13,6 +13,14 @@
                 <On Platform="iOS" Value="Font Awesome 5 Free" />
                 <On Platform="UWP" Value="/Assets/Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
             </OnPlatform>
+
+            <Style x:Key="HeaderStyle" 
+                   TargetType="Label">
+                <Setter Property="TextColor" 
+                        Value="#FF666666" />
+                <Setter Property="FontSize" 
+                        Value="Medium" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -79,8 +79,7 @@
                          Grid.Row="1">
                 <!-- Followers -->
                 <Label Text="Followers (1,271)"
-                       TextColor="Black"
-                       FontSize="Medium"
+                       Style="{StaticResource HeaderStyle}"
                        Margin="0, 0, 0, 7"/>
                 <StackLayout BindableLayout.ItemsSource="{Binding User.TopFollowers}"
                              Margin="13, 0, 0, 0"
@@ -100,16 +99,15 @@
                 </StackLayout>
 
                 <!-- Favorite sports -->
-                <Label Text="Top Favorite Sports"
-                       TextColor="Black"
-                   FontSize="Medium"
-                   Margin="0, 40, 0, 7"/>
+                <Label Text="Favorite Sports"
+                       Style="{StaticResource HeaderStyle}"
+                       Margin="0, 40, 0, 7"/>
                 <StackLayout BindableLayout.ItemsSource="{Binding User.FavoriteSports}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Name}"
-                                       TextColor="DimGray"
+                                       TextColor="Black"
                                        VerticalOptions="Center"
                                        FontSize="Medium" />
                                 <Label Text="{Binding Sport, Converter={StaticResource SportIconConverter}}"
@@ -124,8 +122,7 @@
 
                 <!-- Favorite tech -->
                 <Label Text="Favorite Tech"
-                       TextColor="Black"
-                       FontSize="Medium"
+                       Style="{StaticResource HeaderStyle}"
                        Margin="0, 40, 0, 7"/>
                 <FlexLayout BindableLayout.ItemsSource="{Binding User.FavoriteTech}"
                             BindableLayout.ItemTemplateSelector="{StaticResource TechItemTemplateSelector}"

@@ -34,7 +34,7 @@ namespace BindableLayoutsApp
                 },
                 FavoriteTech = new string[]
                 {
-                    ".NET", "C#", "F#", "Azure", "Xamarin", "Xamarin Forms", "XAML"
+                    ".NET", "C#", "F#", "Azure", "Xamarin", "Xamarin Forms", "XAML", "SkiaSharp"
                 }
             };
         }
