@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:BindableLayoutsApp"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="BindableLayoutsApp.UserProfilePage"
+             BackgroundColor="#FDF7F3">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <l:TechItemTemplateSelector x:Key="TechItemTemplateSelector">
+                <l:TechItemTemplateSelector.DefaultTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding }" 
+                               FontSize="Medium"
+                               Margin="0, 0, 7, 0"/>
+                    </DataTemplate>
+                </l:TechItemTemplateSelector.DefaultTemplate>
+                <l:TechItemTemplateSelector.XamarinFormsItemTemplate>
+                    <DataTemplate>
+                        <Label FontSize="Medium"
+                               Margin="0, 0, 7, 0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding }"
+                                          TextColor="DarkRed"/>
+                                    <Span Text="{x:Static l:IconFont.Heart}"
+                                          TextColor="DarkRed"
+                                          FontFamily="{StaticResource IconFontFamily}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </DataTemplate>
+                </l:TechItemTemplateSelector.XamarinFormsItemTemplate>
+            </l:TechItemTemplateSelector>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout>
+            <!-- Header -->
+            <Frame VerticalOptions="Start"
+                   Padding="0"
+                   CornerRadius="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!-- Background -->
+                    <Image Source="{l:ImageResource BindableLayoutsApp.Resources.bkgnd.jpg}"
+                           Aspect="Fill"
+                           Grid.RowSpan="3"/>
+
+                    <!-- Profile image -->
+                    <controls:CircleImage Source="{l:ImageResource BindableLayoutsApp.Resources.user.jpg}"
+                                          WidthRequest="120"
+                                          HeightRequest="120"
+                                          BorderThickness="2"
+                                          Margin="0, 40, 0, 0"
+                                          HorizontalOptions="Center"/>
+
+                    <!-- Name and location -->
+                    <Label Text="John Smith"
+                           FontSize="32"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           Grid.Row="1"/>
+                    <Label Text="Redmond, WA, USA"
+                           FontSize="Medium"
+                           TextColor="#FBC7BE"
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Margin="0, 0, 0, 15"/>
+                </Grid>
+            </Frame>
+
+            <StackLayout Spacing="0"
+                         Padding="25"
+                         Grid.Row="1">
+                <!-- Followers -->
+                <Label Text="Followers (1,271)"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       Margin="0, 0, 0, 7"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding User.TopFollowers}"
+                             Margin="13, 0, 0, 0"
+                             Orientation="Horizontal"
+                             Spacing="0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CircleImage Source="{Binding Avatar}"
+                                                  Aspect="AspectFill"
+                                                  WidthRequest="44"
+                                                  HeightRequest="44"
+                                                  BorderColor="LightGray"
+                                                  BorderThickness="1"
+                                                  Margin="-13, 0, 0, 0"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+                <!-- Favorite sports -->
+                <Label Text="Top Favorite Sports"
+                       TextColor="Black"
+                   FontSize="Medium"
+                   Margin="0, 40, 0, 7"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding User.FavoriteSports}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}"
+                                       TextColor="DimGray"
+                                       VerticalOptions="Center"
+                                       FontSize="Medium" />
+                                <Label Text="{Binding Sport, Converter={StaticResource SportIconConverter}}"
+                                       FontFamily="{StaticResource IconFontFamily}"
+                                       VerticalOptions="Center"
+                                       TextColor="Gray"
+                                       FontSize="Large"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+                <!-- Favorite tech -->
+                <Label Text="Favorite Tech"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       Margin="0, 40, 0, 7"/>
+                <FlexLayout BindableLayout.ItemsSource="{Binding User.FavoriteTech}"
+                            BindableLayout.ItemTemplateSelector="{StaticResource TechItemTemplateSelector}"
+                            Wrap="Wrap"
+                            JustifyContent="Start" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

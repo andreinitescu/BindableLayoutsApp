@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:BindableLayoutsApp"
+             x:Class="BindableLayoutsApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <l:SportIconConverter x:Key="SportIconConverter" />
+
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="IconFontFamily">
+                <On Platform="Android" Value="fa-solid-900.ttf#Font Awesome 5 Free" />
+                <On Platform="iOS" Value="Font Awesome 5 Free" />
+                <On Platform="UWP" Value="/Assets/Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
